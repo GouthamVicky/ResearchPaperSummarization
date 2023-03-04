@@ -113,6 +113,7 @@ python consumerkafka.py
 [Screencast from 2023-03-04 23-52-11.webm](https://user-images.githubusercontent.com/65328702/222922665-503d5d12-7432-449a-8a89-428c8a072d18.webm)
 
 
-> The model was trained using Google Colab Pro and kafka message system has been implemented and tested on NVIDIA GeForce RTX™ 2060 SUPER GPU
+> The model was trained using Google Colab Pro and kafka message system has been implemented and tested on NVIDIA GeForce RTX™ 2060 Machine
+
 > GPU is recommended for faster inference for Kafka message system
 
