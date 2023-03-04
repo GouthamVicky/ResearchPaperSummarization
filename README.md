@@ -59,7 +59,7 @@ Performs sentence classification to determine whether a given sentence is a cont
 - **Finetuned from model:** allenai/scibert_scivocab_uncased
 
 
-### How to Get Started with the Model
+
 
 Use the code below to get started with the model.
 ```bash
