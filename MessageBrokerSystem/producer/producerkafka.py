@@ -45,10 +45,10 @@ def main():
         files = {'input': pdf_file}
         
         response = requests.post(grobid_url, files=files)
-        print(response.text)
-        abstract,paragraphText=detectAbstractParagraph(response)
         
-        message = {'filename': file, 'abstract': abstract, "paragraphText": paragraphText}
+        pdfContent=detectAbstractParagraph(response)
+        
+        message = {'filename': file, 'abstract': pdfContent[0], "paragraphText": pdfContent[1]}
         
         producer.poll(1)
         producer.produce('ContributeSentences', json.dumps(message).encode('utf-8'),callback=receipt)

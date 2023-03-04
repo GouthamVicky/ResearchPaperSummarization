@@ -1,6 +1,6 @@
 import json
 import requests
-
+import pprint
 import numpy as np
 from confluent_kafka import Consumer,Producer
 from generateSummaryandMetrics import summaryGenerator,summaryMetrics
@@ -17,11 +17,13 @@ consumer.subscribe(['ContributeSentences'])
 
 
 def main():
-    
+    count=0
     while True:
         message=consumer.poll(1.0)
         if message is None:
-            print('No message received')
+            if count%10==0:
+                print('Waiting for the message to recieve ... ')
+                count=count+1
             continue
         if message.error():
             print('Error: {}'.format(message.error()))
@@ -50,8 +52,10 @@ def main():
         
         result_message = {'filename': pdf_filename, 'Abstract':abstract,'generatedSummary': summary, 'rouge_scores': rouge_scores}
         
-        
+        #result_message = {'filename': pdf_filename, 'Abstract':abstract,'generatedSummary': summary}
         # Print results to console 
-        print(result_message)
+        pprint.pprint(result_message)
        
-main()
+
+if __name__ == '__main__':
+    main()

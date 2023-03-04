@@ -23,4 +23,4 @@ def detectAbstractParagraph(response):
     #Concat the abstract and paragraph text
     paraText =  str(abstract_text) + ("\n\n").join(paragraphs_list)
     
-    return abstract_text,paraText
+    return [abstract_text,paraText]
