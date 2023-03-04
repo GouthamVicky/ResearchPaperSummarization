@@ -27,17 +27,6 @@ sudo docker-compose up -d
 In the Training Dataset for every Research paper, The Raw Text has been extracted from the PDF using [Grobid](https://github.com/kermitt2/grobid) and passed to [Stanza](https://github.com/stanfordnlp/stanza) which provides formatted text in the text file format and contribution sentences from the paper has been annoted and stored as a seperate text file
 
 
-### <div align="center">Part 1 - Model Training and evaluation</div>
-
-  - The objective is to create a sentence classification model that can categorize the contribution sentences of a research paper and use them to produce a summary.
-  - The Text of research paper has been extracted and processed using **Grobid** followed by **Stanza** and each contribution sentences line number has been annotated and stored in **sentences.txt** file in the training dataset
-  - The output of Stanza and line number of contribution sentences from sentences.txt file will be passed as a input to train the classification model pipeline
-  - The model used here is [allenai/scibert_scivocab_uncased](https://huggingface.co/allenai/scibert_scivocab_uncased) which is specifically designed for use with scientific text, including research papers which widely matches with the training dataset of NLPContributionGraph to train a classification model
-  - This can save a lot of time and effort compared to training a language model from scratch, as the pre-trained model has already learned a lot about the structure and language used in scientific text.
-  - Trained Model will classify the contribution sentences and combines the classifed sentences to form a summary of the paper
-  - The generated summary will be evaluvated against the abstarct of the paper as the reference summary
-
-
 ### **Part 1 - Model Training and evaluation**
   - [Model Training Notebook](https://github.com/GouthamVicky/ResearchPaperSummarization/blob/main/Notebooks/ContribSentenceTraining.ipynb) This notebook contains the training and evaluvation code to train the model using NLPContributionGraph dataset
   - [Model Evaluvation](https://github.com/GouthamVicky/ResearchPaperSummarization/blob/main/Notebooks/ContribSenEvaluvation.ipynb) used for evaluvating the generated summary by combining classifed contribution sentences
@@ -45,11 +34,13 @@ In the Training Dataset for every Research paper, The Raw Text has been extracte
 
 ### **Part 2 - Message broker based system using Kafka**
 #### Producer Pipeline
+
   - [Producer](https://github.com/GouthamVicky/ResearchPaperSummarization/blob/main/MessageBrokerSystem/producer/producerkafka.py) will pass message (PDF Text and Abstract of the paper ) on topic **ContributeSentences** to the [Consumer](https://github.com/GouthamVicky/ResearchPaperSummarization/blob/main/MessageBrokerSystem/consumer/consumerkafka.py)
   - [PDF Files](https://github.com/GouthamVicky/ResearchPaperSummarization/tree/main/MessageBrokerSystem/producer/pdfFiles) directory containing PDF files to be passed to the consumer
   - [Gradio Parser](https://github.com/GouthamVicky/ResearchPaperSummarization/blob/main/MessageBrokerSystem/producer/grobidparser.py) is used to extract Abstract and paragraph text from the PDF using beautiful soup parsed on Gradio XML output
 
 #### Consumer Pipeline
+
   - [Consumer](https://github.com/GouthamVicky/ResearchPaperSummarization/blob/main/MessageBrokerSystem/consumer/consumerkafka.py) which hosts the ML model will extract the contribution statements and generates summary along with various ROUGE scores by comparison with abstract of the paper.
 
 
