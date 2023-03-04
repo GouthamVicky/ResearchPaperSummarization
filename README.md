@@ -11,8 +11,17 @@ NLPContributionGraph was introduced as Task 11 at SemEval 2021 for the first tim
 
 
 
-## installation
+## Installation
 
+Clone repo and install [requirements.txt]([https://github.com/ultralytics/yolov5/blob/master/requirements.txt](https://github.com/GouthamVicky/ResearchPaperSummarization/blob/main/prerequisite/requirements.txt)) in a
+[**Python>=3.7.0**](https://www.python.org/) environment
+
+```bash
+git clone https://github.com/GouthamVicky/ResearchPaperSummarization  # clone
+cd prerequisite
+pip install -r requirements.txt  # install
+```
+Refer this Link to install Docker - [Installation steps](https://docs.docker.com/desktop/install/ubuntu/) 
 
 ## Propsosed Solution
 
