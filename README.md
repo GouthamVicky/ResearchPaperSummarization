@@ -22,11 +22,6 @@ Refer this Link to install Docker - [Installation steps](https://linuxize.com/po
 cd prerequisite
 sudo docker-compose up -d
 ```
-
-
-
-
-
 ## Propsosed Solution
 
 In the Training Dataset for every Research paper, The Raw Text has been extracted from the PDF using [Grobid](https://github.com/kermitt2/grobid) and passed to [Stanza](https://github.com/stanfordnlp/stanza) which provides formatted text in the text file format and contribution sentences from the paper has been annoted and stored as a seperate text file
@@ -43,9 +38,7 @@ In the Training Dataset for every Research paper, The Raw Text has been extracte
   - The generated summary will be evaluvated against the abstarct of the paper as the reference summary
 
 
-
-### Usage
-
+### **Part 1 - Model Training and evaluation**
   - [Model Training Notebook](https://github.com/GouthamVicky/ResearchPaperSummarization/blob/main/Notebooks/ContribSentenceTraining.ipynb) This notebook contains the training and evaluvation code to train the model using NLPContributionGraph dataset
   - [Model Evaluvation](https://github.com/GouthamVicky/ResearchPaperSummarization/blob/main/Notebooks/ContribSenEvaluvation.ipynb) used for evaluvating the generated summary by combining classifed contribution sentences
   - [Research paper](https://aclanthology.org/P19-1106/) used for evaluvation of the trained model
@@ -62,9 +55,16 @@ In the Training Dataset for every Research paper, The Raw Text has been extracte
   - The Classifed sentences will be combined to form a Summary
   - Generated summary will be evaluvated against the abstract to calcualte the rouge score
   - Abstract , Generated summary and the rouge score will be printed in the console
-  
-### Usage
+
+### **Part 2 - Message broker based system using Kafka**
+#### Producer Pipeline
   - [Producer](https://github.com/GouthamVicky/ResearchPaperSummarization/blob/main/MessageBrokerSystem/producer/producerkafka.py) will pass message (PDF Text and Abstract of the paper ) on topic **ContributeSentences** to the [Consumer](https://github.com/GouthamVicky/ResearchPaperSummarization/blob/main/MessageBrokerSystem/consumer/consumerkafka.py)
+  - [PDF Files](https://github.com/GouthamVicky/ResearchPaperSummarization/tree/main/MessageBrokerSystem/producer/pdfFiles) directory containing PDF files to be passed to the consumer
+  - [Gradio Parser](https://github.com/GouthamVicky/ResearchPaperSummarization/blob/main/MessageBrokerSystem/producer/grobidparser.py) is used to extract Abstract and paragraph text from the PDF using beautiful soup parsed on Gradio XML output
+
+#### Consumer Pipeline
+  - [Consumer](https://github.com/GouthamVicky/ResearchPaperSummarization/blob/main/MessageBrokerSystem/consumer/consumerkafka.py) which hosts the ML model will extract the contribution statements and generates summary along with various ROUGE scores by comparison with abstract of the paper.
+
 
 > The model was trained using Google Colab Pro and kafka message system has been implemented and tested on NVIDIA GeForce RTX™ 2060 SUPER GPU
 > GPU is recommended for faster inference for Kafka message system
