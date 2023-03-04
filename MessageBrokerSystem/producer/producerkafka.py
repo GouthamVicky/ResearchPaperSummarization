@@ -30,7 +30,7 @@ def receipt(err,msg):
 #####################
 print('Kafka Producer has been initiated...')
 # Set up the Grobid API endpoint
-grobid_url = 'http://localhost:8070/api/processFulltextDocument'
+grobid_url = 'http://localhost:8080/api/processFulltextDocument'
 
 def main():
     
@@ -40,11 +40,12 @@ def main():
 
     # Send each PDF file to Kafka broker
     for file in pdf_files:
-        with open(os.path.join(pdf_dir, file), 'rb') as f:
-            pdf_data = f.read()
+        pdf_file=open(os.path.join(pdf_dir, file), 'rb')
+            
+        files = {'input': pdf_file}
         
-        headers = {'Content-Type': 'application/pdf'}
-        response = requests.post(grobid_url, headers=headers, data=pdf_data)
+        response = requests.post(grobid_url, files=files)
+        print(response.text)
         abstract,paragraphText=detectAbstractParagraph(response)
         
         message = {'filename': file, 'abstract': abstract, "paragraphText": paragraphText}

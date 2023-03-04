@@ -54,4 +54,4 @@ def main():
         # Print results to console 
         print(result_message)
        
-    main()
+main()

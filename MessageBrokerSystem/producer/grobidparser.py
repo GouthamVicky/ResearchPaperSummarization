@@ -4,7 +4,7 @@ def detectAbstractParagraph(response):
     
     # # Parse the TEI XML response using BeautifulSoup 
     soup = BeautifulSoup(response.text, "xml")
-
+    
     # find the abstract element
     abstract_element = soup.find('abstract')
 
