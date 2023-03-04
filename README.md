@@ -42,7 +42,7 @@ Our Task is to build model to classify the contribution sentences from the paper
 
 
 ### **Part 1 - Model Training and evaluation**
-  - [Model Training Notebook](https://github.com/GouthamVicky/ResearchPaperSummarization/blob/main/Notebooks/ContribSentenceTraining.ipynb) This notebook contains the training and evaluvation code to train the model using NLPContributionGraph dataset
+  - [Model Training Notebook](https://github.com/GouthamVicky/ResearchPaperSummarization/blob/main/Notebooks/ContribSentenceTraining.ipynb) This notebook contains the training and evaluvation code to build the model using NLPContributionGraph dataset
   - [Model Evaluvation](https://github.com/GouthamVicky/ResearchPaperSummarization/blob/main/Notebooks/ContribSenEvaluvation.ipynb) used for evaluvating the generated summary by combining classifed contribution sentences
   - [Research paper](https://aclanthology.org/P19-1106/) used for evaluvation of the trained model
 
