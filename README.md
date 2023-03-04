@@ -8,9 +8,10 @@ NLPContributionGraph was introduced as Task 11 at SemEval 2021 for the first tim
 
 - [Installation](#installation)
 - [Usage](#usage)
-- [Contributing](#contributing)
-- [License](#license)
 
+
+
+##installation
 
 
 ## Propsosed Solution
